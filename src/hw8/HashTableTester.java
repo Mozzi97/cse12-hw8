@@ -19,13 +19,14 @@ public class HashTableTester {
 	
 	 @Before
 	  public void setUp(){
-		table = new HashTable(10000,"out.txt");
+		table = new HashTable(10,"out.txt");
 		
 	  }
 
 	@Test
 	public void testinsert() {
-		table.insert("c");
+		table.insert("ca");
+		
 		assertEquals("Check insert",1,table.getSize());
 	}
 	
@@ -36,13 +37,41 @@ public class HashTableTester {
 	
 	@Test
 	public void testdelete() {
-		table.delete("c");
-		assertEquals("Check insert",0,table.getSize());
+		table.delete("ca");
+		table.insert("cb");
+		
+		assertEquals("Check insert",1,table.getSize());
 	}
 	
 	@Test
 	public void testcontains(){
-		assertEquals("Check insert",true,table.contains("c"));
+		table.insert("ca");
+		assertEquals("Check insert",true,table.contains("ca"));
+	}
+	
+	@Test
+	public void testrehash(){
+		table.insert("ca");
+		table.insert("cb");
+		table.insert("cc");
+		table.insert("cd");
+		table.insert("ce");
+		table.insert("cf");
+		table.insert("cg");
+		table.insert("ch");
+		table.insert("ci");
+		table.insert("cj");
+		table.insert("cjb");
+		table.insert("cjr");
+		table.insert("cjg");
+		table.insert("cjj");
+		table.insert("cjrk");
+		table.insert("ck");
+		table.insert("cl");
+		table.insert("cn");
+		table.insert("cm");
+		table.printTable();
+		assertEquals("Check insert",true,table.contains("ca"));
 	}
 
 }
