@@ -18,7 +18,7 @@ public class HashTable implements IHashTable {
 	private int collision;  //Number of collisions since last expansion
 	private String statsFileName;     //FilePath for the file to write statistics upon every rehash
 	private boolean printStats = false;   //Boolean to decide whether to write statistics to file or not after rehashing
-	private final double FACTOR = 0.75;
+	private double factor;
 	private Node found;
 	private Node prev;
 	
@@ -28,6 +28,7 @@ public class HashTable implements IHashTable {
 	private int listindex = 0;
 	private int longest = 0;
 	private int numlongest = 0;
+	private FileWriter fw;
 	
 	//You are allowed to add more :)
 	
@@ -92,11 +93,12 @@ public class HashTable implements IHashTable {
 	/**
 	 * Constructor for hash table
 	 * @param Initial size of the hash table
+	 * @throws IOException 
 	 */
 	public HashTable(int size) {
 		
 		//Initialize
-//		FACTOR = 0.75;
+
 		table = new LinkedList[size];
 		for(int i = 0; i<size; i++){
 			table[i]=new LinkedList();
@@ -109,11 +111,13 @@ public class HashTable implements IHashTable {
 	 * Constructor for hash table
 	 * @param Initial size of the hash table
 	 * @param File path to write statistics
+	 * @throws IOException 
 	 */
 	public HashTable(int size, String fileName){
 		
 		//Set printStats to true and statsFileName to fileName
-//		FACTOR = 0.75;
+
+		
 		table = new LinkedList[size];
 		for(int i = 0; i<size; i++){
 			table[i]=new LinkedList();
@@ -122,6 +126,12 @@ public class HashTable implements IHashTable {
 		this.printStats = true;
 
 		this.statsFileName = fileName;
+		try{
+			fw = new FileWriter(statsFileName,false);
+		}
+		catch(IOException fx){
+			
+		}
 	}
 
 	/** Insert the string value into the hash table
@@ -133,12 +143,17 @@ public class HashTable implements IHashTable {
 		if(value == null){
 			throw new NullPointerException();
 		}
-		
-		if(nelems > FACTOR*table.length && printStats == true){
+		factor = (double)nelems/table.length;
+		if( factor > 0.75 && printStats == true){
 			this.expand ++;
 			this.findlong();
 			
-			this.printStatistics();
+			try {
+				this.printStatistics();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			this.rehash();
 		}
 		else{
@@ -272,7 +287,7 @@ public class HashTable implements IHashTable {
 	}
 	private void rehash(){
 		this.collision = 0;
-//		this.FACTOR = 0;
+		this.factor = 0;
 		this.longest = 0;
 		this.numlongest = 0;
 		LinkedList[] newtable = new LinkedList[table.length*2];
@@ -289,15 +304,16 @@ public class HashTable implements IHashTable {
 		
 	}
 	
-	private void printStatistics(){
+	private void printStatistics() throws IOException{
 		try{
-			PrintStream sta = new PrintStream(new File(statsFileName));
-			System.setOut(sta);
-			sta.append(expand + " resizes, load factor " + FACTOR + ", " +
-			collision + " collisions, " + longest + " longest chain");
-			sta.println();
+
+			fw.write(expand + " resizes, load factor " + (double) Math.round
+					(factor * 100) / 100 + ", " + collision + " collisions, " 
+					+ longest + " longest chain"+"\n");
+			fw.flush();
+
 		}
-		catch(FileNotFoundException fx){
+		catch(IOException fx){
 			System.out.println(fx);
 		}
 	}
