@@ -15,14 +15,16 @@ public class Ransom {
 	
 	
 
-	public Ransom(String inputfile){
+	public Ransom(){
 		table = new HashTable(100,"output.txt");
 	}
 
 
 	
 	private void check(){
-		
+		for(int i=0; i < magazine.length; i++){
+           
+        }
 	}
 		
 	

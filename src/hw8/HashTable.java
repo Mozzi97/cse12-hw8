@@ -127,7 +127,7 @@ public class HashTable implements IHashTable {
 
 		this.statsFileName = fileName;
 		try{
-			fw = new FileWriter(statsFileName,false);
+			fw = new FileWriter(statsFileName,true);
 		}
 		catch(IOException fx){
 			
