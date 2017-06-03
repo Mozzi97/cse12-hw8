@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class HashTableTester {
 	HashTable table;
-	SpellChecker check;
+	
 	
 	
 	
@@ -20,7 +20,8 @@ public class HashTableTester {
 	 @Before
 	  public void setUp(){
 		table = new HashTable(10,"out.txt");
-		check = new SpellChecker("long.dict.txt","Input1.txt");
+		
+		
 	  }
 
 	@Test
@@ -81,10 +82,6 @@ public class HashTableTester {
 		assertEquals("Check insert",true,table.contains("ca"));
 	}
 	
-	@Test
-	public void testcheck(){
-		
-//		assertEquals("Check insert",true,table.contains("ca"));
-	}
+
 
 }

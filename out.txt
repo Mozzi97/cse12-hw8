@@ -1,3 +1,0 @@
-1 resizes, load factor 0.75, 2228 collisions, 5 longest chain
-2 resizes, load factor 0.75, 2845 collisions, 7 longest chain
-3 resizes, load factor 0.75, 5615 collisions, 8 longest chain
