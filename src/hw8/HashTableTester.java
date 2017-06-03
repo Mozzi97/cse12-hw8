@@ -19,7 +19,7 @@ public class HashTableTester {
 	
 	 @Before
 	  public void setUp(){
-		table = new HashTable(10,"out.txt");
+		table = new HashTable(2,"out.txt");
 		
 		
 	  }
@@ -79,6 +79,7 @@ public class HashTableTester {
 		table.insert("cl");
 		table.insert("cn");
 		table.insert("cm");
+		table.printTable();
 		assertEquals("Check insert",true,table.contains("ca"));
 	}
 	
