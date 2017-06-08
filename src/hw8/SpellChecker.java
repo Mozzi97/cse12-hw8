@@ -17,7 +17,7 @@ public class SpellChecker {
 	private ArrayList<String> collected;
 	
 	public SpellChecker(String inputfile, String checkword){
-		table = new HashTable(100,"out.txt");
+		table = new HashTable(100,"newout.txt");
 		
 		list = new ArrayList<String>();
 		collected = new ArrayList<String>();

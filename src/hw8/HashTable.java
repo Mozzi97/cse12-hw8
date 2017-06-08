@@ -1,3 +1,4 @@
+
 /*
  * Name: Jinxiao Chen
  * ID:A14236655
@@ -150,6 +151,7 @@ public class HashTable implements IHashTable {
 			
 			try {
 				this.printStatistics();
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -304,18 +306,15 @@ public class HashTable implements IHashTable {
 		
 	}
 	
-	private void printStatistics() throws IOException{
-		try{
+	private void printStatistics() throws IOException {
+	
 
 			fw.write(expand + " resizes, load factor " + (double) Math.round
 					(factor * 100) / 100 + ", " + collision + " collisions, " 
 					+ longest + " longest chain"+"\n");
 			fw.flush();
 
-		}
-		catch(IOException fx){
-			System.out.println(fx);
-		}
+
 	}
 
 }

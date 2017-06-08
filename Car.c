@@ -76,22 +76,20 @@ int calculateAge( Car argCar ) {
   //Hint: think string as array of characters.
 
     
-    //char temp[4];
-    int temp = 0;
     //string some;
     //for (int i=INDEX_OF_DOM; i< sizeof(argCar.date) ; i++){
     //        some += argCar.date[i];
     //}
-
+    
+    
+    
+    
+     int temp = 0;
      temp += (argCar.date[THOUSAND]-48)*1000;
      temp += (argCar.date[HUNDRED]-48)*100;
      temp += (argCar.date[TEN]-48)*10;
      temp += (argCar.date[LOW]-48)*1;
     
-//    temp[1]=argCar.date[7];
-//    temp[2]=argCar.date[8];
-//    temp[3]=argCar.date[9];
-    printf("%d", temp);
     return CURRENT_YEAR - temp;
 }
 
